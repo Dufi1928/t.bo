@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 5,
         borderRadius: 8,
+        backgroundColor: "green",
         alignItems: 'center',
         justifyContent: 'center',
     },
