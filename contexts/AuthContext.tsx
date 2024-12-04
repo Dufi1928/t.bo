@@ -19,23 +19,17 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    console.log('isLoggedIn:', isLoggedIn);
-    console.log('hello world');
 
     const login = () => {
         setIsLoggedIn(true);
     };
 
     useEffect(() => {
-        console.log('isLoggedIn changed:', isLoggedIn);
     }, [isLoggedIn]);
 
     const logout = () => {
-        console.log('LOGOUT FUNCTION CALLED IN PROVIDER');
         setIsLoggedIn(false);
     };
-
-    console.log('AuthProvider rendered');
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, login, logout }}>

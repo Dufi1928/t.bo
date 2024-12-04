@@ -1,15 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, ViewProps } from 'react-native';
 import { ThemedText } from '@/component/ThemedText';
-import { useThemeColors } from '@/hooks/useThemeColors'; // Importation du hook pour gérer les couleurs dynamiquement
+import { useThemeColors } from '@/hooks/useThemeColors';
 
-// Définition des styles de base
 const styles = StyleSheet.create({
     primaryCta: {
-        width: '93%',
+        width: '100%',
         paddingVertical: 12,
         paddingHorizontal: 5,
-        borderRadius: 8,
+        borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
 interface PrimaryButtonProps extends ViewProps {
     onPress: () => void;
     text: string;
-    variant?: 'primaryCta' | 'secondaryCta' | 'simpleText'; // Synchronisé avec les variantes prises en charge
+    variant?: 'primaryCta' | 'secondaryCta' | 'simpleText';
 }
 
 export function PrimaryButton({ onPress, text, variant = 'primaryCta', ...rest }: PrimaryButtonProps) {
@@ -42,7 +41,7 @@ export function PrimaryButton({ onPress, text, variant = 'primaryCta', ...rest }
 
     return (
         <TouchableOpacity style={buttonStyle} onPress={onPress} {...rest}>
-            <ThemedText variant={variant} color="defaultDarck">
+            <ThemedText variant='primaryCta' color="defaultLight">
                 {text}
             </ThemedText>
         </TouchableOpacity>

@@ -17,13 +17,29 @@ const styles = StyleSheet.create({
         fontFamily: "poppins",
         fontWeight: "regular",
     },
+    large:{
+        fontSize: 44,
+        fontFamily: "poppins",
+        fontWeight: "regular",
+        lineHeight: 50,
+        marginBottom: 18
+    },
+    regular: {
+        fontFamily: "poppins",
+        fontSize: 20,
+        fontWeight: "regular",
+    },
     medium:{
         fontSize: 18,
         fontFamily: "poppins",
         fontWeight: "regular",
     },
-
-    simpleText:{
+    small:{
+        fontFamily: "poppins",
+        fontSize: 16,
+        fontWeight: "regular",
+    },
+    smallest:{
         fontFamily: "poppins",
         fontSize: 12,
         fontWeight: "regular",
@@ -37,6 +53,6 @@ type Props =  TextProps & {
 
 export function ThemedText({variant, color, ...rest}:Props){
     const colors = useThemeColors()
-    return <Text style={[styles[variant ?? "simpleText"], {color: colors[color ?? "defaultLight"]}]} {...rest} />
+    return <Text style={[styles[variant ?? "small"], {color: colors[color ?? "defaultLight"]}]} {...rest} />
 }
 

@@ -3,14 +3,14 @@ export const Colors = {
         buttonPrimaryBackground: '#EFB441',
         buttonSecondaryBackground: '#F3F3F3',
         generalBackgroundPrimary: '#FFFFFF',
-        defaultDarck: '#FFFFFF',
+        defaultDark: '#143f52',
         defaultLight: '#FFFFFF'
     },
     dark: {
         buttonPrimaryBackground: '#EFB441',
         buttonSecondaryBackground: '#F3F3F3',
         generalBackgroundPrimary: '#FFFFFF',
-        defaultLight: '#143f52',
-        defaultDarck: '#FFFFFF'
+        defaultLight: '#FFFFFF',
+        defaultDark: '#143f52'
     },
 }

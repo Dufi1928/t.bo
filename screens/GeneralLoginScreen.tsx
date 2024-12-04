@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, RefreshControl, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { AuthContext } from '@/contexts/AuthContext';
 import { PrimaryButton } from '@/component/PrimaryButton';
 import Logo from '@/icons/Logo';
 import Illustration from '@/icons/Illustration';
@@ -9,24 +8,26 @@ import GoogleIcon from '@/icons/GoogleIcon';
 import AppleIcon from '@/icons/AppleIcon';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { ThemedText } from '@/component/ThemedText';
+import {useNavigation} from "@react-navigation/native";
+import { StackNavigationProp } from '@react-navigation/stack';
+import {RootStackParamList} from '@/app/Navigation'
 
-const LoginScreen = () => {
-    const { login } = useContext(AuthContext);
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+const GeneralLoginScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
     const themeColors = useThemeColors();
+
 
     const onRefresh = () => {
         setRefreshing(true);
         setTimeout(() => {
-            console.log('Page refreshed');
             setRefreshing(false);
-        }, 2000);
+        }, 500);
     };
 
-    const handleLogin = () => {
-        console.log('handleLogin called');
-        login();
-    };
+    const navigation = useNavigation<NavigationProp>();
+
 
     return (
         <ScrollView
@@ -36,7 +37,7 @@ const LoginScreen = () => {
                 <RefreshControl
                     refreshing={refreshing}
                     onRefresh={onRefresh}
-                    colors={[themeColors.defaultDarck]}
+                    colors={[themeColors.defaultDark]}
                     tintColor={themeColors.buttonPrimaryBackground}
                 />
             }
@@ -44,9 +45,13 @@ const LoginScreen = () => {
             <Logo width={97} height={53} />
             <Illustration />
 
-            <ThemedText variant="medium" color="defaultLight">Inscrivez-vous pour continuer :</ThemedText>
+            <ThemedText variant="medium" color="defaultDark">Inscrivez-vous pour continuer :</ThemedText>
 
-            <PrimaryButton onPress={handleLogin} text="Continue avec ton numéro de téléphone" />
+            <PrimaryButton
+                onPress={() => navigation.navigate('PhoneLogin')}
+                variant="primaryCta"
+                text="Continue avec ton numéro de téléphone"
+            />
 
             <TouchableOpacity style={styles.emailButton}>
                 <ThemedText variant="medium" color="buttonPrimaryBackground">
@@ -56,7 +61,9 @@ const LoginScreen = () => {
 
             <View style={styles.separator}>
                 <View style={styles.line} />
-                <Text style={styles.separatorText}>ou connectez-vous avec</Text>
+                <ThemedText variant="small" color="defaultDark">
+                    ou connectez-vous avec
+                </ThemedText>
                 <View style={styles.line} />
             </View>
 
@@ -73,8 +80,8 @@ const LoginScreen = () => {
             </View>
 
             <View style={styles.footer}>
-                <Text style={styles.footerText}>Conditions d’utilisations</Text>
-                <Text style={styles.footerText}>Politique de confidentialité</Text>
+                <ThemedText variant="smallest" color="defaultDark">Conditions d’utilisations</ThemedText>
+                <ThemedText variant="smallest" color="defaultDark">Politique de confidentialité</ThemedText>
             </View>
         </ScrollView>
     );
@@ -84,8 +91,11 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         alignItems: 'center',
+        alignContent: 'center',
+        marginTop: "auto",
         justifyContent: 'space-around',
-        paddingVertical: 25,
+        paddingVertical: 45,
+        paddingHorizontal: '3.5%',
     },
     title: {
         fontSize: 18,
@@ -99,21 +109,20 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         width: '80%',
         alignItems: 'center',
-        marginBottom: 15,
     },
     separator: {
         flexDirection: 'row',
         alignItems: 'center',
         width: '90%',
-        marginBottom: 20,
+        marginBottom: 15,
     },
     line: {
         flex: 1,
         height: 1,
+        marginHorizontal: 5,
         backgroundColor: '#ccc',
     },
     separatorText: {
-        marginHorizontal: 10,
         fontSize: 12,
         color: '#000',
     },
@@ -121,17 +130,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '75%',
-        marginBottom: 20,
+        marginBottom: 5,
     },
     footer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '100%',
     },
-    footerText: {
-        fontSize: 12,
-        color: '#666',
-    },
 });
 
-export default LoginScreen;
+export default GeneralLoginScreen;

@@ -5,9 +5,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AuthContext } from '@/contexts/AuthContext';
 
 import HomeScreen from '@/screens/HomeScreen';
-import LoginScreen from '@/screens/LoginScreen';
+import GeneralLoginScreen from '@/screens/GeneralLoginScreen';
+import PhoneLoginScreen from "@/screens/PhoneLoginScreen";
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+
+export type RootStackParamList = {
+    Home: undefined;
+    Login: undefined;
+    PhoneLogin: undefined;
+};
+
+// Type pour la navigation
+export type NavigationProps = StackNavigationProp<RootStackParamList>;
+
+
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
     const { isLoggedIn } = useContext(AuthContext);
@@ -17,7 +31,10 @@ const Navigation = () => {
             {isLoggedIn ? (
                 <Stack.Screen name="Home" component={HomeScreen} />
             ) : (
-                <Stack.Screen name="Login" component={LoginScreen} />
+                <>
+                    <Stack.Screen name="Login" component={GeneralLoginScreen} />
+                    <Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
+                </>
             )}
         </Stack.Navigator>
     );
