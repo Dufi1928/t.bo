@@ -7,7 +7,10 @@ import Clothes from '@/icons/Clothes';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { ThemedText } from '@/component/ThemedText';
 import BackArrow from '@/icons/BackArrow';
-import { useNavigation } from '@react-navigation/native';
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "@/app/Navigation";
+import {useNavigation} from "@react-navigation/native";
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 
 const PhoneLoginScreen = () => {
@@ -15,7 +18,6 @@ const PhoneLoginScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [phone, setPhone] = useState('');
     const [countryCode, setCountryCode] = useState('+33');
-    const navigation = useNavigation();
 
     const themeColors = useThemeColors();
 
@@ -33,6 +35,8 @@ const PhoneLoginScreen = () => {
         }
         login();
     };
+
+    const navigation = useNavigation<NavigationProp>();
 
     return (
         <ScrollView
@@ -83,7 +87,11 @@ const PhoneLoginScreen = () => {
                 />
             </View>
             <View style={styles.pageWrapper}>
-                <PrimaryButton onPress={handleLogin} variant={'primaryCta'} text="Continuer" />
+                <PrimaryButton
+                    onPress={() => navigation.navigate('SmsVerification')}
+                    variant="primaryCta"
+                    text="Continue avec ton numéro de téléphone"
+                />
                 <Clothes />
             </View>
         </ScrollView>

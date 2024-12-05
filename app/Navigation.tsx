@@ -8,12 +8,14 @@ import HomeScreen from '@/screens/HomeScreen';
 import GeneralLoginScreen from '@/screens/GeneralLoginScreen';
 import PhoneLoginScreen from "@/screens/PhoneLoginScreen";
 import { StackNavigationProp } from '@react-navigation/stack';
+import SmsVerificationScreen from "@/screens/SmsVerificationScreen";
 
 
 export type RootStackParamList = {
     Home: undefined;
     Login: undefined;
     PhoneLogin: undefined;
+    SmsVerification: undefined;
 };
 
 // Type pour la navigation
@@ -34,6 +36,7 @@ const Navigation = () => {
                 <>
                     <Stack.Screen name="Login" component={GeneralLoginScreen} />
                     <Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
+                    <Stack.Screen name="SmsVerification" component={SmsVerificationScreen} />
                 </>
             )}
         </Stack.Navigator>

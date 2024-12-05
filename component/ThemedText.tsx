@@ -17,10 +17,22 @@ const styles = StyleSheet.create({
         fontFamily: "poppins",
         fontWeight: "regular",
     },
+    digits:{
+        fontSize: 24,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
     large:{
         fontSize: 44,
         fontFamily: "poppins",
         fontWeight: "regular",
+        lineHeight: 50,
+        marginBottom: 18
+    },
+    largeBolder:{
+        fontSize: 44,
+        fontFamily: "poppins",
+        fontWeight: "bold",
         lineHeight: 50,
         marginBottom: 18
     },
