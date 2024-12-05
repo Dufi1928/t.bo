@@ -58,13 +58,25 @@ const styles = StyleSheet.create({
     }
 })
 
-type Props =  TextProps & {
+type Props = TextProps & {
     variant?: keyof typeof styles;
     color?: keyof typeof Colors["dark"];
+    style?: object;
+};
+
+
+export function ThemedText({ variant, color, style, ...rest }: Props) {
+    const colors = useThemeColors();
+    return (
+        <Text
+            style={[
+                styles[variant ?? "small"],
+                { color: colors[color ?? "defaultLight"] },
+                style // Fusion des styles passés
+            ]}
+            {...rest}
+        />
+    );
 }
 
-export function ThemedText({variant, color, ...rest}:Props){
-    const colors = useThemeColors()
-    return <Text style={[styles[variant ?? "small"], {color: colors[color ?? "defaultLight"]}]} {...rest} />
-}
 

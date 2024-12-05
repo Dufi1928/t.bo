@@ -72,9 +72,14 @@ const SmsVerificationScreen = () => {
                 <ThemedText variant="largeBolder" color="defaultDark">
                     {`00:${timer < 10 ? `0${timer}` : timer}`}
                 </ThemedText>
-                <ThemedText variant="regular" color="defaultDark">
+                <ThemedText
+                    variant="regular"
+                    color="defaultDark"
+                    style={{ textAlign: "center", width: "70%" }}
+                >
                     Tapez le code de vérification nous vous avons envoyé
                 </ThemedText>
+
                 <View style={styles.codeContainer}>
                     {code.map((digit, index) => (
                         <View
